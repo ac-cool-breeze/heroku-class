@@ -48,7 +48,7 @@ const Login = () => {
                 <Alert severity="error" >Invalid Credentials</Alert>
             </Collapse>
             <Grid container justify="center" >
-                <form onSubmit={Handler}>
+                <form >
                     <Grid item xs={12}>
                         <TextField id="username" label="Username" />
                     </Grid>
@@ -59,7 +59,7 @@ const Login = () => {
                         <Button id="sign-in" variant="contained" color="primary" type="submit" style={styles.button}>Sign In</Button>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button id="sign-up" variant="contained" color="secondary" href="/signup" style={styles.button}>Sign Up</Button>
+                        <Button onClick={Handler} id="sign-up" variant="contained" color="secondary" href="/signup" style={styles.button}>Sign Up</Button>
                     </Grid>
                 </form>
             </Grid>
