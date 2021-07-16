@@ -9,7 +9,7 @@ const isAuth = {
   isAuthenticated: false,
 }
 
-let route = <Route path="/login" component={login}><Login /></Route>
+let route = <Route path="/login" component={Login}><Login /></Route>
 
 function App() {
 
