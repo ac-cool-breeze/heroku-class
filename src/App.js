@@ -1,5 +1,5 @@
 import './App.css';
-import Login from './Login'
+import Login from './Components/Login'
 import Chat from './chat'
 import PrivateRoute from './PrivateRoute'
 import Cookies from 'js-cookie'
