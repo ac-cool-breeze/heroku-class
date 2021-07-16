@@ -9,7 +9,7 @@ const styles = {
     button:{
         margin: "8px",
         color: "#FFFFFF",
-        width: "50%"
+        width: "51%"
     }
 }
 
