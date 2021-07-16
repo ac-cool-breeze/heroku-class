@@ -1,45 +1,68 @@
-import React, { Component } from "react";
-import CustomInput from "./CustomInput";
-import Button from "./Button";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Alert from '@material-ui/lab/Alert';
+import React from 'react';
+import Collapse from '@material-ui/core/Collapse';
 
-export default class Login extends Component {
-  state = {
-    email: "",
-    password: ""
-  };
-
-  handleChange = e => {
-    this.setState({ [e.currentTarget.id]: e.currentTarget.value });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <form className="form">
-          <CustomInput
-            labelText="Email"
-            id="email"
-            formControlProps={{
-              fullWidth: true
-            }}
-            handleChange={this.handleChange}
-            type="text"
-          />
-          <CustomInput
-            labelText="Password"
-            id="password"
-            formControlProps={{
-              fullWidth: true
-            }}
-            handleChange={this.handleChange}
-            type="password"
-          />
-
-          <Button type="button" color="primary" className="form__custom-button">
-            Log in
-          </Button>
-        </form>
-      </div>
-    );
-  }
+const styles = {
+    button:{
+        margin: "8px",
+        color: "#FFFFFF",
+        width: "50%"
+    }
 }
+
+const Login = () => {
+
+    const [open, setOpen] = React.useState(false);
+
+    const Handler = (e) =>{
+        e.preventDefault();
+        let requestOptions ={
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: e.target.username.value,
+                password: e.target.password.value
+            })
+        }
+        fetch('http://localhost:3001/login', requestOptions)
+            .then( res=>{
+                if(res.status === 401){
+                    setOpen(true)
+                    return console.log('invalid credentials')
+                }
+                if(res.status === 200){
+                    return window.location.href = '/'
+                }
+            })
+    }
+
+    return(
+        <div>
+            <Collapse in={open}>
+                <Alert severity="error" >Invalid Credentials</Alert>
+            </Collapse>
+            <Grid container justify="center" >
+                <form onSubmit={Handler}>
+                    <Grid item xs={12}>
+                        <TextField id="username" label="Username" />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField id="password" type="password" label="Password" />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button id="sign-in" variant="contained" color="primary" type="submit" style={styles.button}>Sign In</Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button id="sign-up" variant="contained" color="secondary" href="/signup" style={styles.button}>Sign Up</Button>
+                    </Grid>
+                </form>
+            </Grid>
+        </div>
+    )
+}
+
+export default Login;
