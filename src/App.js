@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from './login'
+import Chat from './chat'
+import PrivateRoute from './PrivateRoute'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 function App() {
+
+  const setAuth=()=>{
+    if(Cookies.get('username')){
+      isAuth.isAuthenticated = true
+      route =  <Route path="/chat"><Chat /></Route>
+    } else {
+      isAuth.isAuthenticated = false
+      route =  <Route path="/login"><Login /></Route>
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        {route}
+      </Router>
+    </>
   );
 }
 
