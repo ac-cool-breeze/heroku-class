@@ -18,17 +18,19 @@ const Login = () => {
     const [open, setOpen] = React.useState(false);
 
     const Handler = (e) =>{
+        console.log("hello world")
+        console.log(e)
         e.preventDefault();
         let requestOptions ={
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                username: e.target.username.value,
+                name: e.target.username.value,
                 password: e.target.password.value
             })
         }
-        fetch('http://localhost:3001/login', requestOptions)
+        fetch('https://class-heroku-backend.herokuapp.com/users/login', requestOptions)
             .then( res=>{
                 if(res.status === 401){
                     setOpen(true)

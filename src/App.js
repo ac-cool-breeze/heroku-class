@@ -1,5 +1,5 @@
 import './App.css';
-import Login from './login'
+import Login from './Login'
 import Chat from './chat'
 import PrivateRoute from './PrivateRoute'
 import Cookies from 'js-cookie'
@@ -9,18 +9,17 @@ const isAuth = {
   isAuthenticated: false,
 }
 
-let route = <Route path="/login" component={Login}><Login /></Route>
+let conditionalRender = <Login />
 
 function App() {
-
 
   const setAuth=()=>{
     if(Cookies.get('username')){
       isAuth.isAuthenticated = true
-      route =  <Route path="/chat"><Chat /></Route>
+      conditionalRender =  <Chat />
     } else {
       isAuth.isAuthenticated = false
-      route =  <Route path="/login"><Login /></Route>
+      conditionalRender =  <Login />
     }
   }
 
@@ -29,8 +28,9 @@ function App() {
   return (
     <>
       <Router>
-        {route}
+       <Route path="/login"><Login /></Route>
       </Router>
+      {conditionalRender}
     </>
   );
 }
