@@ -30,7 +30,7 @@ const Login = () => {
                 password: e.target.password.value
             })
         }
-        fetch('https://class-heroku-backend.herokuapp.com/users/login', requestOptions)
+        fetch('http://backend.ionizing.space/users/login', requestOptions)
             .then( res=>{
                 console.log(res)
                 if(res.status === 401){
