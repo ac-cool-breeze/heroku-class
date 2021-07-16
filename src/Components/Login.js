@@ -32,6 +32,7 @@ const Login = () => {
         }
         fetch('https://class-heroku-backend.herokuapp.com/users/login', requestOptions)
             .then( res=>{
+                console.log(res)
                 if(res.status === 401){
                     setOpen(true)
                     return console.log('invalid credentials')
