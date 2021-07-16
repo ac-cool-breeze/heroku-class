@@ -57,10 +57,10 @@ const Login = () => {
                         <TextField id="password" type="password" label="Password" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button id="sign-in" variant="contained" color="primary" type="submit" style={styles.button}>Sign In</Button>
+                        <Button onClick={Handler} id="sign-in" variant="contained" color="primary" type="submit" style={styles.button}>Sign In</Button>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button onClick={Handler} id="sign-up" variant="contained" color="secondary" href="/signup" style={styles.button}>Sign Up</Button>
+                        <Button  id="sign-up" variant="contained" color="secondary" href="/signup" style={styles.button}>Sign Up</Button>
                     </Grid>
                 </form>
             </Grid>
