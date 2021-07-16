@@ -19,11 +19,11 @@ const Login = () => {
 
     const Handler = (e) =>{
         console.log("hello world")
-        console.log(e)
+        console.log(e.target.username.value)
         e.preventDefault();
         let requestOptions ={
             method: 'POST',
-            credentials: 'true',
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: e.target.username.value,
@@ -49,7 +49,7 @@ const Login = () => {
                 <Alert severity="error" >Invalid Credentials</Alert>
             </Collapse>
             <Grid container justify="center" >
-                <form >
+                <form onSubmit={Handler}>
                     <Grid item xs={12}>
                         <TextField id="username" label="Username" />
                     </Grid>
@@ -57,7 +57,7 @@ const Login = () => {
                         <TextField id="password" type="password" label="Password" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button onClick={Handler} id="sign-in" variant="contained" color="primary" type="submit" style={styles.button}>Sign In</Button>
+                        <Button  id="sign-in" variant="contained" color="primary" type="submit" style={styles.button}>Sign In</Button>
                     </Grid>
                     <Grid item xs={12}>
                         <Button  id="sign-up" variant="contained" color="secondary" href="/signup" style={styles.button}>Sign Up</Button>
