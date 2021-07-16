@@ -2,9 +2,15 @@ import './App.css';
 import Login from './login'
 import Chat from './chat'
 import PrivateRoute from './PrivateRoute'
+import Cookies from 'js-cookie'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
+const isAuth = {
+  isAuthenticated: false,
+}
+
 function App() {
+
 
   const setAuth=()=>{
     if(Cookies.get('username')){
@@ -15,6 +21,8 @@ function App() {
       route =  <Route path="/login"><Login /></Route>
     }
   }
+
+  setAuth()
 
   return (
     <>
