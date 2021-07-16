@@ -23,7 +23,7 @@ const Login = () => {
         e.preventDefault();
         let requestOptions ={
             method: 'POST',
-            credentials: 'include',
+            credentials: 'true',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 name: e.target.username.value,
