@@ -144,7 +144,7 @@ const theme = createTheme({
 }
 })
 // #39393A  "black"
-// #297373  "blue"
+// #0091ea  "blue"
 /*
 {
     "palette": {
