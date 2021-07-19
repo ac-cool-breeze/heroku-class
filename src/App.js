@@ -144,6 +144,10 @@ const theme = createTheme({
       secondary: {
         main: "#0091ea"
       },
+      typography: {
+        subtitle1: {
+          fontSize: 10,
+      }},
       primary1Color: "rgba(0, 0, 0, 0.26)",
       accent2Color: "#0091ea",
       accent1Color: "#0091ea",
@@ -153,13 +157,13 @@ const theme = createTheme({
 })
 
 const isAuth = {
-  //isAuthenticated: true,  //DEV
-  isAuthenticated: false,   //PRODUCTION
+  isAuthenticated: true,  //DEV
+  //isAuthenticated: false,   //PRODUCTION
 
 }
 
-//let conditionalRender = <Chat />  //DEV
-let conditionalRender = <Login/> //PRODUCTION
+let conditionalRender = <Chat />  //DEV
+//let conditionalRender = <Login/> //PRODUCTION
 
 function App() {
 
@@ -173,7 +177,7 @@ function App() {
     }
   }
 
-  setAuth()   //PRODUCTION
+  //setAuth()   //PRODUCTION
 
   return (
     <>

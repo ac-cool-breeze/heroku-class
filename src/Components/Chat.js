@@ -14,6 +14,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
 import Cookies from 'js-cookie';
+import ShadowScrollbars from './ShadowScrollbars'
+import { fontSize } from '@material-ui/system';
 
 const useStyles = makeStyles({
   table: {
@@ -23,19 +25,24 @@ const useStyles = makeStyles({
     width: '100%',
     //height: '80vh'
   },
-  headBG: {
-      backgroundColor: '#e0e0e0'
-  },
-  borderRight500: {
-      borderRight: '1px solid #e0e0e0'
+  messageRow:{
+    
   },
   messageArea: {
-    height: '70vh',
+    //height: '80vh',
     overflowY: 'auto'
   },
   lilMargin:{
       margin:"10px"
-  }
+  },
+  paper: {
+      marginLeft: "10%",
+      marginRight: "10%",
+  },
+  text:{
+      fontSize: "8px",
+      color: "#0091ea"
+ }
 });
 
 
@@ -67,7 +74,6 @@ const Chat = () => {
       .then(res => res.json())
       .then((d) => {
         setData(d)
-        //console.log("id:",d[d.length-1].id)
       })
     }
 
@@ -85,24 +91,28 @@ const Chat = () => {
   }, [data])
 
   return (
-      <div>
-        <Grid container className={classes.lilMargin}>
-            <Grid item xs={12} >
-                <Typography variant="h5" className="header-message">Chat</Typography>
-            </Grid>
-        </Grid>
+      <Paper elevation={3} className={classes.paper}>
         <Grid container component={Paper} className={classes.chatSection}>
             <Grid item xs={12}>
                 <List className={classes.messageArea}>
+                    <ShadowScrollbars style={{ height: '80vh' }}>
                     {data.map((element) => (
                         <>
-                      <ListItem>
+                      <ListItem className={classes.messageRow} dense>
                           <Grid container>
-                              <Grid item xs={12}>
-                                  <ListItemText align="right" secondary={element.created_at}></ListItemText>
-                              </Grid>
-                              <Grid item xs={12}>
-                                  <ListItemText align="left" secondary={element.name}></ListItemText>
+                              <Grid item xs={1}>
+                                  <ListItemText align="left" secondary={
+                                      <Typography variant="subtitle1" className={classes.text} >
+                                          {element.name}
+                                        </Typography>
+                                      }></ListItemText>
+                              </Grid><Grid item xs={9}></Grid>
+                              <Grid item xs={2}>
+                                  <ListItemText align="right" className={classes.text}>
+                                    <Typography variant="subtitle1" className={classes.text} >
+                                        {element.created_at}
+                                    </Typography>
+                                  </ListItemText>
                               </Grid>
                               <Grid item xs={12}>
                                   <ListItemText align="left" primary={element.message}></ListItemText>
@@ -112,6 +122,7 @@ const Chat = () => {
                       <Divider />
                       </>
                      ))}
+                     </ShadowScrollbars>
                      <ListItem id="blank"></ListItem>
                 </List>
                 <Divider />
@@ -137,7 +148,7 @@ const Chat = () => {
                 </Grid>
             </Grid>
         </Grid>
-      </div>
+      </Paper>
   );
 }
 
