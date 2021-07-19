@@ -127,16 +127,19 @@
 
 import './App.css';
 import Login from './Components/Login'
-import Chat from './chat'
+import Chat from './Components/Chat'
 import PrivateRoute from './PrivateRoute'
 import Cookies from 'js-cookie'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 const isAuth = {
-  isAuthenticated: false,
+  isAuthenticated: true,  //DEV
+  //isAuthenticated: false,   //PRODUCTION
+
 }
 
-let conditionalRender = <Login />
+let conditionalRender = <Chat />  //DEV
+//let conditionalRender = <Login /> //PRODUCTION
 
 function App() {
 
@@ -150,7 +153,7 @@ function App() {
     }
   }
 
-  setAuth()
+  //setAuth()   //PRODUCTION
 
   return (
     <>
