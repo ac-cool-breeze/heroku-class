@@ -15,7 +15,9 @@ const styles = {
 
 const Login = () => {
 
-    const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
+    const [open3, setOpen3] = React.useState(false);
     const [signup, setSignUp] = React.useState(false);
 
     const Handler = (e) =>{
@@ -34,10 +36,11 @@ const Login = () => {
                 .then( res=>{
                     console.log(res)
                     if(res.status === 401){
-                        setOpen(true)
+                        setOpen3(true)
                         return console.log('invalid new user')
                     }
                     if(res.status === 200){
+                        setOpen2(true)
                         return window.location.href = '/'
                     }
                 })
@@ -55,7 +58,7 @@ const Login = () => {
                 .then( res=>{
                     console.log(res)
                     if(res.status === 401){
-                        setOpen(true)
+                        setOpen1(true)
                         return console.log('invalid credentials')
                     }
                     if(res.status === 200){
@@ -67,8 +70,14 @@ const Login = () => {
 
     return(
         <div>
-            <Collapse in={open}>
+            <Collapse in={open1}>
                 <Alert severity="error" >Invalid Credentials</Alert>
+            </Collapse>
+            <Collapse in={open2}>
+                <Alert severity="success" >Signed Up, you may now login</Alert>
+            </Collapse>
+            <Collapse in={open3}>
+                <Alert severity="error" >Invalid New User (username likely taken)</Alert>
             </Collapse>
             <Grid container justify="center" >
                 <form onSubmit={Handler}>
