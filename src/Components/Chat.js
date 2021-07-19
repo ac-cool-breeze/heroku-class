@@ -40,7 +40,7 @@ const useStyles = makeStyles({
       marginRight: "10%",
   },
   text:{
-      fontSize: "8px",
+      fontSize: "10px",
       color: "#0091ea"
  }
 });
