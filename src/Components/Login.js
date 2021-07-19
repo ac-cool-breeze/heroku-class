@@ -4,13 +4,36 @@ import Grid from '@material-ui/core/Grid';
 import Alert from '@material-ui/lab/Alert';
 import React from 'react';
 import Collapse from '@material-ui/core/Collapse';
+import { Paper } from '@material-ui/core';
+import { height } from '@material-ui/system';
 
 const styles = {
     button:{
         margin: "8px",
         color: "#FFFFFF",
         width: "51%"
-    }
+    },
+    paper:{
+        width:"50%",
+        margin:"20px",
+        display: "flex"
+    },
+    form:{
+        margin:"auto",
+        justify: "center"
+    },
+    img:{
+        width:"auto",
+        height: "150px"
+    },
+    alignItemsAndJustifyContent: {
+        width: 500,
+        height: 80,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'pink',
+      },
 }
 
 const Login = () => {
@@ -23,7 +46,7 @@ const Login = () => {
     const Handler = (e) =>{
         e.preventDefault();
         if(signup){
-            let requestOptions ={
+            let requestOptions = {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -35,7 +58,7 @@ const Login = () => {
             fetch('http://backend.ionizing.space/users/newuser', requestOptions)
                 .then( res=>{
                     console.log(res)
-                    if(res.status === 401){
+                    if(res.status === 500){
                         setOpen3(true)
                         return console.log('invalid new user')
                     }
@@ -57,7 +80,7 @@ const Login = () => {
             fetch('http://backend.ionizing.space/users/login', requestOptions)
                 .then( res=>{
                     console.log(res)
-                    if(res.status === 401){
+                    if(res.status === 502){
                         setOpen1(true)
                         return console.log('invalid credentials')
                     }
@@ -80,21 +103,27 @@ const Login = () => {
                 <Alert severity="error" >Invalid New User (username likely taken)</Alert>
             </Collapse>
             <Grid container justify="center" >
-                <form onSubmit={Handler}>
-                    <Grid item xs={12}>
-                        <TextField id="username" label="Username" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField id="password" type="password" label="Password" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button  id="sign-in" variant="contained" color="primary" type="submit" style={styles.button} onClick={()=>setSignUp(false)}>Sign In</Button>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button  id="sign-up" variant="contained" color="secondary" type="submit" style={styles.button} onClick={()=>setSignUp(true)}>Sign Up</Button>
-                    </Grid>
-                </form>
+                <Paper style={styles.paper}>
+                    <form onSubmit={Handler} style={styles.form}>
+                        <Grid item xs={12}>
+                            <img alt="unsecure chat logo" src="logo.png" style={styles.img}></img>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField id="username" label="Username"/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField id="password" type="password" label="Password" />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button  id="sign-in" variant="contained" color="primary" type="submit" style={styles.button} onClick={()=>setSignUp(false)}>Sign In</Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button  id="sign-up" variant="contained" color="secondary" type="submit" style={styles.button} onClick={()=>setSignUp(true)}>Sign Up</Button>
+                        </Grid>
+                    </form>
+                </Paper>
             </Grid>
+
         </div>
     )
 }

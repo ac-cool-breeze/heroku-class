@@ -135,27 +135,22 @@ import { createTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 
 const theme = createTheme({
-  "palette": {
-    "primary1Color": "rgba(0, 0, 0, 0.26)",
-    "accent2Color": "#0091ea",
-    "accent1Color": "#0091ea",
-    "accent3Color": "#0091ea",
-    "primary3Color": "#0091ea"
-}
-})
-// #39393A  "black"
-// #0091ea  "blue"
-/*
-{
     "palette": {
-        "primary1Color": "rgba(0, 0, 0, 0.26)",
-        "accent2Color": "#0091ea",
-        "accent1Color": "#0091ea",
-        "accent3Color": "#0091ea",
-        "primary3Color": "#0091ea"
-    }
-}
-*/
+      type: 'dark',
+      primary: {
+        main: "rgba(0, 0, 0, 0.26)",
+        contrastText: "#0091ea",
+      },
+      secondary: {
+        main: "#0091ea"
+      },
+      primary1Color: "rgba(0, 0, 0, 0.26)",
+      accent2Color: "#0091ea",
+      accent1Color: "#0091ea",
+      accent3Color: "#0091ea",
+      primary3Color: "#0091ea",
+  }
+})
 
 const isAuth = {
   //isAuthenticated: true,  //DEV
@@ -164,17 +159,17 @@ const isAuth = {
 }
 
 //let conditionalRender = <Chat />  //DEV
-let conditionalRender = <Login theme={theme}/> //PRODUCTION
+let conditionalRender = <Login/> //PRODUCTION
 
 function App() {
 
   const setAuth=()=>{
     if(Cookies.get('username')){
       isAuth.isAuthenticated = true
-      conditionalRender =  <Chat theme={theme}/>
+      conditionalRender =  <Chat/>
     } else {
       isAuth.isAuthenticated = false
-      conditionalRender =  <Login theme={theme}/>
+      conditionalRender =  <Login/>
     }
   }
 
@@ -184,7 +179,7 @@ function App() {
     <>
     <ThemeProvider theme={theme}>
       <Router>
-       <Route path="/login"><Login theme={theme}/></Route>
+       <Route path="/login"><Login /></Route>
       </Router>
       {conditionalRender}
     </ThemeProvider>
