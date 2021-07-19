@@ -16,31 +16,53 @@ const styles = {
 const Login = () => {
 
     const [open, setOpen] = React.useState(false);
+    const [signup, setSignUp] = React.useState(false);
 
     const Handler = (e) =>{
-        console.log("hello world")
-        console.log(e.target.username.value)
         e.preventDefault();
-        let requestOptions ={
-            method: 'POST',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: e.target.username.value,
-                password: e.target.password.value
-            })
+        if(signup){
+            let requestOptions ={
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: e.target.username.value,
+                    password: e.target.password.value
+                })
+            }
+            fetch('http://backend.ionizing.space/users/newuser', requestOptions)
+                .then( res=>{
+                    console.log(res)
+                    if(res.status === 401){
+                        setOpen(true)
+                        return console.log('invalid new user')
+                    }
+                    if(res.status === 200){
+                        return window.location.href = '/'
+                    }
+                })
+        }else{
+            let requestOptions ={
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: e.target.username.value,
+                    password: e.target.password.value
+                })
+            }
+            fetch('http://backend.ionizing.space/users/login', requestOptions)
+                .then( res=>{
+                    console.log(res)
+                    if(res.status === 401){
+                        setOpen(true)
+                        return console.log('invalid credentials')
+                    }
+                    if(res.status === 200){
+                        return window.location.href = '/'
+                    }
+                })
         }
-        fetch('http://backend.ionizing.space/users/login', requestOptions)
-            .then( res=>{
-                console.log(res)
-                if(res.status === 401){
-                    setOpen(true)
-                    return console.log('invalid credentials')
-                }
-                if(res.status === 200){
-                    return window.location.href = '/'
-                }
-            })
     }
 
     return(
@@ -57,10 +79,10 @@ const Login = () => {
                         <TextField id="password" type="password" label="Password" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button  id="sign-in" variant="contained" color="primary" type="submit" style={styles.button}>Sign In</Button>
+                        <Button  id="sign-in" variant="contained" color="primary" type="submit" style={styles.button} onClick={()=>setSignUp(false)}>Sign In</Button>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button  id="sign-up" variant="contained" color="secondary" href="/signup" style={styles.button}>Sign Up</Button>
+                        <Button  id="sign-up" variant="contained" color="secondary" type="submit" style={styles.button} onClick={()=>setSignUp(true)}>Sign Up</Button>
                     </Grid>
                 </form>
             </Grid>

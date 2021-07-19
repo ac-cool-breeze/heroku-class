@@ -131,25 +131,50 @@ import Chat from './Components/Chat'
 import PrivateRoute from './PrivateRoute'
 import Cookies from 'js-cookie'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { createTheme } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createTheme({
+  "palette": {
+    "primary1Color": "rgba(0, 0, 0, 0.26)",
+    "accent2Color": "#0091ea",
+    "accent1Color": "#0091ea",
+    "accent3Color": "#0091ea",
+    "primary3Color": "#0091ea"
+}
+})
+// #39393A  "black"
+// #297373  "blue"
+/*
+{
+    "palette": {
+        "primary1Color": "rgba(0, 0, 0, 0.26)",
+        "accent2Color": "#0091ea",
+        "accent1Color": "#0091ea",
+        "accent3Color": "#0091ea",
+        "primary3Color": "#0091ea"
+    }
+}
+*/
 
 const isAuth = {
-  // isAuthenticated: true,  //DEV
+  //isAuthenticated: true,  //DEV
   isAuthenticated: false,   //PRODUCTION
 
 }
 
 //let conditionalRender = <Chat />  //DEV
-let conditionalRender = <Login /> //PRODUCTION
+let conditionalRender = <Login theme={theme}/> //PRODUCTION
 
 function App() {
 
   const setAuth=()=>{
     if(Cookies.get('username')){
       isAuth.isAuthenticated = true
-      conditionalRender =  <Chat />
+      conditionalRender =  <Chat theme={theme}/>
     } else {
       isAuth.isAuthenticated = false
-      conditionalRender =  <Login />
+      conditionalRender =  <Login theme={theme}/>
     }
   }
 
@@ -157,10 +182,12 @@ function App() {
 
   return (
     <>
+    <ThemeProvider theme={theme}>
       <Router>
-       <Route path="/login"><Login /></Route>
+       <Route path="/login"><Login theme={theme}/></Route>
       </Router>
       {conditionalRender}
+    </ThemeProvider>
     </>
   );
 }
