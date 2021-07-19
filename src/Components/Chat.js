@@ -92,6 +92,7 @@ const Chat = () => {
             <Grid item xs={12}>
                 <List className={classes.messageArea}>
                     {data.map((element) => (
+                        <>
                       <ListItem>
                           <Grid container>
                               <Grid item xs={12}>
@@ -105,6 +106,8 @@ const Chat = () => {
                               </Grid>
                           </Grid>
                       </ListItem>
+                      <Divider />
+                      </>
                      ))}
                      <ListItem id="blank"></ListItem>
                 </List>

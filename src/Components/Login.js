@@ -5,7 +5,8 @@ import Alert from '@material-ui/lab/Alert';
 import React from 'react';
 import Collapse from '@material-ui/core/Collapse';
 import { Paper } from '@material-ui/core';
-import { height } from '@material-ui/system';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close'
 
 const styles = {
     button:{
@@ -94,13 +95,61 @@ const Login = () => {
     return(
         <div>
             <Collapse in={open1}>
-                <Alert severity="error" >Invalid Credentials</Alert>
+                <Alert 
+                severity="error"
+                action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setOpen1(false);
+                      }}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                >
+                    Invalid Credentials
+                </Alert>
             </Collapse>
             <Collapse in={open2}>
-                <Alert severity="success" >Signed Up, you may now login</Alert>
+                <Alert 
+                severity="success" 
+                action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setOpen2(false);
+                      }}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                >
+                    Signed Up, you may now login
+                </Alert>
             </Collapse>
             <Collapse in={open3}>
-                <Alert severity="error" >Invalid New User (username likely taken)</Alert>
+                <Alert 
+                severity="error"
+                action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={() => {
+                        setOpen3(false);
+                      }}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  } 
+                >
+                    Invalid New User (username likely taken)
+                </Alert>
             </Collapse>
             <Grid container justify="center" >
                 <Paper style={styles.paper}>
