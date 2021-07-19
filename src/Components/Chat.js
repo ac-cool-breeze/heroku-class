@@ -32,6 +32,9 @@ const useStyles = makeStyles({
   messageArea: {
     height: '70vh',
     overflowY: 'auto'
+  },
+  lilMargin:{
+      margin:"10px"
   }
 });
 
@@ -83,7 +86,7 @@ const Chat = () => {
 
   return (
       <div>
-        <Grid container>
+        <Grid container className={classes.lilMargin}>
             <Grid item xs={12} >
                 <Typography variant="h5" className="header-message">Chat</Typography>
             </Grid>
@@ -122,11 +125,12 @@ const Chat = () => {
                                 sendMessage()
                             }
                         }}
+                        className={classes.lilMargin}
                         />
                     </Grid>
                     <Grid xs={1} align="right">
                         <Fab color="primary" 
-                        onClick={()=>{sendMessage()}}>
+                        onClick={()=>{sendMessage()}} className={classes.lilMargin}>
                             <SendIcon />
                         </Fab>
                     </Grid>

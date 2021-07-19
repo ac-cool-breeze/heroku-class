@@ -63,10 +63,8 @@ const Login = () => {
                         setOpen3(true)
                         return console.log('invalid new user')
                     }
-                    if(res.status === 200){
+                    if(res.status === 200)
                         setOpen2(true)
-                        return window.location.href = '/'
-                    }
                 })
         }else{
             let requestOptions ={
@@ -85,9 +83,8 @@ const Login = () => {
                         setOpen1(true)
                         return console.log('invalid credentials')
                     }
-                    if(res.status === 200){
+                    if(res.status === 200)
                         return window.location.href = '/'
-                    }
                 })
         }
     }
