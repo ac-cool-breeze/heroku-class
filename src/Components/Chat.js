@@ -100,13 +100,21 @@ const Chat = () => {
                         <>
                       <ListItem className={classes.messageRow} dense>
                           <Grid container>
+
+
+
                               <Grid item xs={1}>
                                   <ListItemText align="left" secondary={
                                       <Typography variant="subtitle1" className={classes.text} >
                                           {element.name}
                                         </Typography>
                                       }></ListItemText>
-                              </Grid><Grid item xs={9}></Grid>
+                              </Grid>
+                              
+                              
+                              <Grid item xs={9}><ListItemText align="left" primary={element.message}></ListItemText></Grid>
+
+                              
                               <Grid item xs={2}>
                                   <ListItemText align="right" className={classes.text}>
                                     <Typography variant="subtitle1" className={classes.text} >
@@ -114,9 +122,16 @@ const Chat = () => {
                                     </Typography>
                                   </ListItemText>
                               </Grid>
-                              <Grid item xs={12}>
+
+
+
+                              {/* <Grid item xs={12}>
                                   <ListItemText align="left" primary={element.message}></ListItemText>
-                              </Grid>
+                              </Grid> */}
+
+
+
+
                           </Grid>
                       </ListItem>
                       <Divider />
