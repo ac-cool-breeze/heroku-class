@@ -157,13 +157,13 @@ const theme = createTheme({
 })
 
 const isAuth = {
-  isAuthenticated: true,  //DEV
-  //isAuthenticated: false,   //PRODUCTION
+  //isAuthenticated: true,  //DEV
+  isAuthenticated: false,   //PRODUCTION
 
 }
 
-let conditionalRender = <Chat />  //DEV
-//let conditionalRender = <Login/> //PRODUCTION
+//let conditionalRender = <Chat />  //DEV
+let conditionalRender = <Login/> //PRODUCTION
 
 function App() {
 
@@ -177,7 +177,7 @@ function App() {
     }
   }
 
-  //setAuth()   //PRODUCTION
+  setAuth()   //PRODUCTION
 
   return (
     <>
